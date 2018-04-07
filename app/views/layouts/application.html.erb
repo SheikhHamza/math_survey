@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MathSurvey</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+ <%= render 'layouts/nav' %>
+  <body>
+  	<div class="container center">
+		<div class="row">
+			<div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 text-center">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
