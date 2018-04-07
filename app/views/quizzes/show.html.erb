@@ -4,7 +4,7 @@
 		<% @levels.each_with_index  do |l,i| %>
 		<div class="row">
 			<div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
-				<%= link_to "Level #{i}",'/',class: 'btn btn-primary levels'%> 
+				<%= link_to "Level #{i+1}",quiz_add_level_path(@quiz.id,l.id),class: 'btn btn-primary levels'%>
 			</div>
 		</div>
 		<% end %>
