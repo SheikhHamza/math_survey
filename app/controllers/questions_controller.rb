@@ -29,6 +29,13 @@ class QuestionsController < ApplicationController
 		if i < (@quiz.number_of_questions - 1)
 			redirect_to quiz_question_path(@quiz,questions[i+1].id)
 		else
+			count = 0
+			questions.each do |q|
+				if (q.solution == q.response)
+					count = count + 1
+				end
+			end
+			@quiz.update_attributes(score: count)
 			redirect_to '/'
 		end
 
