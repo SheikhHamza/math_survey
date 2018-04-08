@@ -7,19 +7,42 @@ class QuestionsController < ApplicationController
 
 		create_new_questions(@quiz,@level)
 
-		redirect_to quiz_questions_path(@quiz.id)
-	end
+		@questions = @quiz.questions
 
-	def index
-
+		redirect_to quiz_question_path(@quiz.id,@questions[0].id)
 	end
 	
+	def show
+		@quiz = Quiz.find(params[:quiz_id])
+		@question = Question.find(params[:id])
+	end
+
+	def update
+		@question = Question.find(params[:id])
+		@question.update_attributes(question_params)
+
+		@quiz = Quiz.find(params[:quiz_id])
+		questions = @quiz.questions 
+
+		i = questions.find_index(@question) 
+		
+		if i < (@quiz.number_of_questions - 1)
+			redirect_to quiz_question_path(@quiz,questions[i+1].id)
+		else
+			redirect_to '/'
+		end
+
+	end
+
 	def questions_params
 		param.require(:question).permit(:quiz_id,:number_one,:number_two,:number_three,:solution)
 	end
 
 	private
 	
+	def question_params
+		params.require(:question).permit(:response)
+	end
 	def delete_existing(quiz_id)
 		Question.where(quiz_id: quiz_id).delete_all
 	end

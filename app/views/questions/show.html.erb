@@ -1,0 +1,48 @@
+
+<script type="text/javascript">	
+	function secondNumber()
+	{	
+		document.getElementById("numberdiv").innerHTML = "<%= @question.number_two %>";
+	}
+	function thirdNumber()
+	{	
+		document.getElementById("numberdiv").innerHTML = "<%= @question.number_three %>";
+	}
+	function blackout() {
+		document.getElementById("numberdiv").innerHTML = "";
+	}
+	function showTextbox()
+	{
+		document.getElementById("ques").style.display = 'none';
+		document.getElementById("ans").style.display = 'block';
+	}
+	window.onload = window.setTimeout(blackout,800)
+	window.onload = window.setTimeout(secondNumber, 1200);
+	window.onload = window.setTimeout(blackout,2000);
+	window.onload = window.setTimeout(thirdNumber,2500);
+	window.onload = window.setTimeout(showTextbox,3300);
+
+</script>
+
+<div class="row" >
+	<div class="col-lg-12 col-xs-12 col-sm-12  col-md-12">
+		<div class="question center-block" id='ques'>		
+			<span class="number" id ="numberdiv">
+				<%= @question.number_one %>
+			</span>
+		</div>
+		<div id="ans" style="display:none;">
+			<span class="number" style="font-size: 5vw">
+				Answer
+			</span>
+			<%= form_for(@question, url: quiz_question_path(@quiz,@question)) do |q|%>
+			<div class="number" style="font-size: 4vw">
+				<%= q.number_field(:response) %>	
+			</div>
+			<div>
+				<%= q.submit 'Submit' ,class: 'btn btn-primary', style: 'margin:1vw; font-size: 2vw '%>
+			</div>
+			<% end%>
+		</div>
+	</div>
+</div>
