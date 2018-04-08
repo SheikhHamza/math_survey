@@ -1,3 +1,3 @@
 class Difficulty < ApplicationRecord
-	has_many :quizzes, optional: true
+	has_many :quizzes
 end
