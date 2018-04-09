@@ -9,6 +9,8 @@ class QuestionsController < ApplicationController
 
 		@questions = @quiz.questions
 
+		@quiz.update_attributes(start_time: Time.now)
+
 		redirect_to quiz_question_path(@quiz.id,@questions[0].id)
 	end
 	
@@ -32,21 +34,29 @@ class QuestionsController < ApplicationController
 			count = 0
 			questions.each do |q|
 				if (q.solution == q.response)
-					count = count + 1
+					count = count + 1	
 				end
 			end
+			@quiz.update_attributes(end_time: Time.now)
 			@quiz.update_attributes(score: count)
-			redirect_to '/'
+			render quizzes_end_response_path
 		end
 
 	end
 
+	def end_response
+
+	end
+
+
+	
+
+	private
+	
 	def questions_params
 		param.require(:question).permit(:quiz_id,:number_one,:number_two,:number_three,:solution)
 	end
 
-	private
-	
 	def question_params
 		params.require(:question).permit(:response)
 	end
@@ -65,4 +75,5 @@ class QuestionsController < ApplicationController
 			Question.create(quiz_id:quiz.id,number_one:num1,number_two:num2,number_three:num3,solution:result)
 		end
 	end
+
 end

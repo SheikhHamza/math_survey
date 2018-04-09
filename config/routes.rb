@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   	get '/add_level/:id', to: 'quizzes#add_level', as: 'add_level'
   end
 
+  root 'quizzes#home'
+  get '/quizzes/end_response', to: 'quizzes#end_response'
 
 
 end

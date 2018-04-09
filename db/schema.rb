@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408123002) do
+ActiveRecord::Schema.define(version: 20180409183039) do
 
   create_table "active_admin_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "namespace"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180408123002) do
     t.integer "high"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label"
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180408123002) do
     t.integer "number_of_questions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "label"
   end
 
   add_foreign_key "questions", "quizzes"

@@ -4,6 +4,9 @@ class QuizzesController < ApplicationController
 		@levels = Difficulty.all
 	end
 
+	def home
+	end
+	
 	def add_level	
 		@quiz = Quiz.find(params[:quiz_id])
 		@quiz.update_attribute(:difficulty_id, params[:id])
