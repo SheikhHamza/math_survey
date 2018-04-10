@@ -17,6 +17,9 @@ class QuestionsController < ApplicationController
 	def show
 		@quiz = Quiz.find(params[:quiz_id])
 		@question = Question.find(params[:id])
+		if @question.response.present?
+			redirect_to quizzes_Completed_path
+		end
 	end
 
 	def update
@@ -44,12 +47,6 @@ class QuestionsController < ApplicationController
 
 	end
 
-	def end_response
-
-	end
-
-
-	
 
 	private
 	
