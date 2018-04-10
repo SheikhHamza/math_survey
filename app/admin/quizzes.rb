@@ -11,7 +11,17 @@ ActiveAdmin.register Quiz do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+index do
+  column :id
+  column :label
+  column :qualtrics_survey_id
+  column :qualtrics_response_id
+  column :start_time
+  column :end_time
+  column :difficulty
+  column :score
+  column :number_of_questions
+end
 form do |f|
   f.inputs "Quizzes" do
     if f.object.new_record?

@@ -1,7 +1,12 @@
 class QuizzesController < ApplicationController
 	def show
 		@quiz = Quiz.where(id: params[:id])
+		@qualtrics_response_id = params[:qualtrics_response_id]
+		@qualtrics_survey_id = params[:qualtrics_survey_id]
 		if @quiz.present?
+			@quiz.update(qualtrics_response_id:@qualtrics_response_id)
+			@quiz.update(qualtrics_survey_id: @qualtrics_survey_id)
+			@quiz.save
 			@quiz = @quiz[0]
 			@levels = Difficulty.all
 			if @quiz.score.present?
